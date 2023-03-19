@@ -1,7 +1,4 @@
-README needs to be changed too!!!!!
-
-This is a MERN Stack Ecommerce website. I made it for Youtube tutorials. I think everyone will like it.
-In this project I am using:
+This is a MERN Stack Ecommerce website made by Group 2 in COMP231. 
 
 M = MONGODB FOR DATABASE
 E = EXPRESS JS FOR CREATING SERVER 
@@ -19,9 +16,6 @@ https://nodemailer.com/about/
 ** EMAIL JS
 https://www.emailjs.com/
 
-============================== CONNECTS WITH ME ========================
-INSTAGRAM: https://www.instagram.com/dev_shahriar/
-YOUTUBE: https://www.youtube.com/
-FACEBOOK: https://www.facebook.com/shahriar.sajeeb.16
+
 
 
