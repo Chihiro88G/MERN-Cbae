@@ -10,6 +10,7 @@ import { clearErrors, login, register } from "../../actions/userAction";
 import MetaData from "../../more/Metadata";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logo from "../../Assets/logo/CbaeLogo.jpeg"
 
 const LoginSignup = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -116,6 +117,7 @@ const LoginSignup = ({ history, location }) => {
                 <button ref={switcherTab}></button>
               </div>
               <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+                <img src={logo} alt="" style={{ width: "140px" }} />
                 <div className="loginEmail">
                   <MailOutlineIcon />
                   <input

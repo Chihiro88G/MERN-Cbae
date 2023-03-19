@@ -7,28 +7,28 @@ import ProductCard from "./ProductCard";
 import { clearErrors, getProduct } from "../../actions/ProductActions";
 import Pagination from "react-js-pagination";
 import "./Product.css";
-import Typography from"@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography"
 // import { useAlert } from "react-alert";
 import MetaData from "../../more/Metadata";
 import BottomTab from "../../more/BottomTab";
 
 const categories = [
-    "Personal",
-    "cloth",
-    "Ladies Cloth",
-    "Gift",
-    "Food",
-    "Electronics",
-    "Sports",
-    "Others"
+  "Personal",
+  "cloth",
+  "Ladies Cloth",
+  "Gift",
+  "Food",
+  "Electronics",
+  "Sports",
+  "Others"
 ]
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
-  
+
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const [category,setCategory] = useState("");
+
+  const [category, setCategory] = useState("");
 
   const {
     products,
@@ -46,12 +46,12 @@ const Products = ({ match }) => {
 
 
   useEffect(() => {
-      if(error){
-          alert(error);
-          dispatch(clearErrors())
-      }
-    dispatch(getProduct(keyword, currentPage,category));
-  }, [dispatch, keyword,currentPage,category,alert,error]); 
+    if (error) {
+      alert(error);
+      dispatch(clearErrors())
+    }
+    dispatch(getProduct(keyword, currentPage, category));
+  }, [dispatch, keyword, currentPage, category, alert, error]);
 
 
 
@@ -61,10 +61,10 @@ const Products = ({ match }) => {
         <Loading />
       ) : (
         <>
-        <MetaData title="Products" />
+          <MetaData title="Products" />
           <Header />
           <div>
-           {products.length === 0 ? 
+            {/* {products.length === 0 ? 
             ""
             :
             <h2
@@ -80,41 +80,41 @@ const Products = ({ match }) => {
           >
             Featured Products
           </h2>
-           }
+           } */}
             <div className="sidebar__product" style={{
-                display:"flex",
-                flex:1,
+              display: "flex",
+              flex: 1,
             }}>
-                <div className="sidebar__products" style={{
-                  border: "1px solid #999",
-                  margin:"1vmax",
-                  flex:".177"
+              <div className="sidebar__products" style={{
+                border: "1px solid #999",
+                margin: "1vmax",
+                flex: ".177"
               }}>
-                  <Typography style={{fontSize:"1.2vmax",padding:"5px"}}>CHOOSE CATEGORIES</Typography>
-                  <ul className="categoryBox">
-                      {categories.map((category) =>(
-                          <li
-                          className="category-link"
-                          key={category}
-                          onClick={() =>setCategory(category)}
-                          type="checkbox">
-                          {category}
-                          </li> 
-                      ))}
-                  </ul>
-                  <Typography style={{fontSize:"1.2vmax",padding:"5px"}}>QUICK LINKS</Typography>
-                  <li className="category-link">
-                      My Carts
-                  </li>
-                  <li className="category-link">
-                      Favourites Items
-                  </li>
-                  <li className="category-link">
-                      Go to Checkout
-                  </li>
+                <Typography style={{ fontSize: "1.2vmax", padding: "5px" }}>CHOOSE CATEGORIES</Typography>
+                <ul className="categoryBox">
+                  {categories.map((category) => (
+                    <li
+                      className="category-link"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                      type="checkbox">
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+                <Typography style={{ fontSize: "1.2vmax", padding: "5px" }}>QUICK LINKS</Typography>
+                <li className="category-link">
+                  My Carts
+                </li>
+                <li className="category-link">
+                  Favourites Items
+                </li>
+                <li className="category-link">
+                  Go to Checkout
+                </li>
               </div>
 
-             {products.length === 0 ?
+              {/* {products.length === 0 ?
              <span style={{
                display:"block",
                padding:"30px 0",
@@ -137,34 +137,34 @@ const Products = ({ match }) => {
                  <ProductCard key={product.id} product={product} />
                ))}
            </div>
-              }
-             
-             </div>
-            
-              <div
-                className="pagination__box"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: "6vmax",
-                }}
-              >
-                <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={resultPerPage}
-                  totalItemsCount={productsCount}
-                  onChange={setCurrentPageNo}
-                  nextPageText="Next"
-                  prevPageText="Prev"
-                  firstPageText="First"
-                  lastPageText="Last"
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activeClass="pageItemActive"
-                  activeLinkClass="pageLinkActive"
-                />
-              </div>
+              } */}
+
+            </div>
+
+            <div
+              className="pagination__box"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "6vmax",
+              }}
+            >
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resultPerPage}
+                totalItemsCount={productsCount}
+                onChange={setCurrentPageNo}
+                nextPageText="Next"
+                prevPageText="Prev"
+                firstPageText="First"
+                lastPageText="Last"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeClass="pageItemActive"
+                activeLinkClass="pageLinkActive"
+              />
+            </div>
           </div>
           <Footer />
           <BottomTab />

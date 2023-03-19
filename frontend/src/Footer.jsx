@@ -4,7 +4,7 @@ import logo from "./Assets/logo/CbaeLogo.jpeg"
 
 const Footer = () => {
   return (
-    <div className="Footer flex space__around pz__15" style={{ "borderTop": ".3px solid rgba(21,21,21,0.5)" }}>
+    <div className="Footer flex space__around pz__15" style={{ "borderTop": ".3px solid rgba(21,21,21,0.5)", "backgroundColor": "#AF8181" }}>
       {/* Footer 1st part */}
       <div className="footer1st">
         <img

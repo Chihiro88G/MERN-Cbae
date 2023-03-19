@@ -4,6 +4,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from "../../Assets/logo/CbaeLogo.jpeg"
+import { green } from "@material-ui/core/colors";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -105,7 +106,7 @@ const Header = () => {
         </div>
       </div>
       {/* Header Navbar */}
-      <div className="navbar flex pz__10 space__beetween" ref={switcherTab}>
+      <div className="navbar flex pz__10 space__beetween" ref={switcherTab} style={{ backgroundColor: "#AF8181" }}>
         <div
           className="navigation"
           style={{
@@ -239,7 +240,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
   );
 };
