@@ -198,7 +198,6 @@ const LoginSignup = ({ history, location }) => {
               </form>
             </div>
           </div>
-          <div></div>
           <ToastContainer
             position="bottom-center"
             autoClose={5000}

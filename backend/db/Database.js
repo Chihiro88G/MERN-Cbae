@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 
-const connectDatabase = () =>{
-    mongoose.connect(process.env.DB_URL,{
+const connectDatabase = () => {
+    // need to create "cbae" on local first
+    mongoose.connect("mongodb://localhost/cbae", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    }).then((data) =>{
+    }).then((data) => {
         console.log(`mongodb is connected with server: ${data.connection.host}`);
     })
 }

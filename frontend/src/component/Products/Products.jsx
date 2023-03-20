@@ -64,23 +64,23 @@ const Products = ({ match }) => {
           <MetaData title="Products" />
           <Header />
           <div>
-            {/* {products.length === 0 ? 
-            ""
-            :
-            <h2
-            style={{
-              textAlign: "center",
-              borderBottom: "1px solid rgba(21,21,21,0.5)",
-              width: "20vmax",
-              fontSize: "1.4vmax",
-              fontFamily: "Poppins,sans-serif",
-              margin: "3vmax auto",
-              color: "rgb(0, 0, 0, 0.7)",
-            }}
-          >
-            Featured Products
-          </h2>
-           } */}
+            {products.length === 0 ?
+              ""
+              :
+              <h2
+                style={{
+                  textAlign: "center",
+                  borderBottom: "1px solid rgba(21,21,21,0.5)",
+                  width: "20vmax",
+                  fontSize: "1.4vmax",
+                  fontFamily: "Poppins,sans-serif",
+                  margin: "3vmax auto",
+                  color: "rgb(0, 0, 0, 0.7)",
+                }}
+              >
+                Featured Products
+              </h2>
+            }
             <div className="sidebar__product" style={{
               display: "flex",
               flex: 1,
@@ -114,30 +114,30 @@ const Products = ({ match }) => {
                 </li>
               </div>
 
-              {/* {products.length === 0 ?
-             <span style={{
-               display:"block",
-               padding:"30px 0",
-               fontSize:"1.5rem",
-               flex:".9",
-               textAlign:"center"
-             }}>No Product Found ....</span>
-             : 
-             <div
-             className="products"
-             style={{
-               display: "flex",
-               flexWrap: "wrap",
-               justifyContent: "center",
-               flex:".9"
-             }}
-           >
-             {products &&
-               products.map((product) => (
-                 <ProductCard key={product.id} product={product} />
-               ))}
-           </div>
-              } */}
+              {products.length === 0 ?
+                <span style={{
+                  display: "block",
+                  padding: "30px 0",
+                  fontSize: "1.5rem",
+                  flex: ".9",
+                  textAlign: "center"
+                }}>No Product Found ....</span>
+                :
+                <div
+                  className="products"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    flex: ".9"
+                  }}
+                >
+                  {products &&
+                    products.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+              }
 
             </div>
 
