@@ -35,6 +35,7 @@ import Contact from "./more/Contact";
 import MoreOption from "./component/user/MoreOption"
 import Dashboard from './component/Admin/Dashboard';
 import CreateProduct from './component/Admin/CreateProduct';
+import BecomeSeller from './component/user/BecomeSeller';
 import AllProducts from "../../frontend/src/component/Admin/AllProducts";
 import EditProduct from "../../frontend/src/component/Admin/EditProduct";
 import AllOrder from "../../frontend/src/component/Admin/AllOrder";
@@ -96,6 +97,7 @@ function App() {
         <Route exact path="/faq" component={Rules} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/more" component={MoreOption} />
+        <Route exact path="/become_seller" component={BecomeSeller} />
         <Route exact path="/password/forgot" component={ForgotPassword} />
         <Route exact path="/password/reset/:token" component={ResetPassword} />
         <ProtectedRoute exact path="/shipping" component={Shipping} />
