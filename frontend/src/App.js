@@ -36,6 +36,7 @@ import MoreOption from "./component/user/MoreOption"
 import Dashboard from './component/Admin/Dashboard';
 import CreateProduct from './component/Admin/CreateProduct';
 import BecomeSeller from './component/user/BecomeSeller';
+import AccountSetting from './component/Authentication/AccountSetting'
 import AllProducts from "../../frontend/src/component/Admin/AllProducts";
 import EditProduct from "../../frontend/src/component/Admin/EditProduct";
 import AllOrder from "../../frontend/src/component/Admin/AllOrder";
@@ -100,6 +101,7 @@ function App() {
         <Route exact path="/become_seller" component={BecomeSeller} />
         <Route exact path="/password/forgot" component={ForgotPassword} />
         <Route exact path="/password/reset/:token" component={ResetPassword} />
+        <Route exact path="/account_setting" component={AccountSetting} />
         <ProtectedRoute exact path="/shipping" component={Shipping} />
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
         <ProtectedRoute exact path="/me" component={Profile} />

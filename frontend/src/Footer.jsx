@@ -88,8 +88,8 @@ const Footer = () => {
         <div className="footer__2nd__part">
           <h5>Account</h5>
           <Link to="/login"><h3>Log In</h3></Link>
-          <Link to="/login"><h3>Sign In</h3></Link>
           <Link to="/login"><h3>Registration</h3></Link>
+          <Link to="/account_setting"><h3>Account Setting</h3></Link>
           <Link to="/password/forgot"><h3>Forgot Password</h3></Link>
         </div>
         {/* Footer 3rd part */}
@@ -103,7 +103,6 @@ const Footer = () => {
         <div className="footer__3rd__part">
           <h5>Buiseness</h5>
           <Link to="/become_seller"><h3>Create A Seller Account</h3></Link>
-          {/* <Link to="/creator"><h3>Seller Rules</h3></Link> */}
           <Link to="/Products"><h3>View Shop</h3></Link>
           <Link to="/support"><h3>Report us</h3></Link>
         </div>
