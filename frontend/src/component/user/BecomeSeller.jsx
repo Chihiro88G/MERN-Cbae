@@ -41,7 +41,7 @@ const BecomeSeller = () => {
                             <p>One platform that lets you sell wherever your customers are:
                             online, in‑person, and everywhere in between</p> 
                             <h1>Run your business from a single place </h1>
-                            <p>Promote and sell on sales channels while Shopify 
+                            <p>Promote and sell on sales channels while C-bae 
                                 automatically tracks orders and inventory.</p>
                                 <h1>Boost sales</h1>
                                 <p>Customize where your products appear, 
