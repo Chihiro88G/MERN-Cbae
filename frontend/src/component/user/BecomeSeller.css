@@ -7,4 +7,22 @@
     font: 400 1vmax "Roboto";
     margin-top: 1%;
     text-decoration: none;
+  
 }
+
+p {
+    color: #7E7E7E;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding-left: 5px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 14px;
+    padding-right: 5px;
+}
+
+
+
+
+

@@ -24,25 +24,43 @@ const BecomeSeller = () => {
             ) : (
                 <>
                     <MetaData title="Products" />
-                    <Header />
+                    <Header />     
                     <div className='rules' style={{
                         padding: "50px 30px",
                         display: "flex",
                         width: "95%",
                         overflow: "hidden"
                     }}>
-                        <ul><span style={{
+                        <span style={{
                             color: "#000",
                             fontSize: "1.3rem",
                             fontWeight: "800",
                             fontFamily: "Roboto",
-                        }}>Rules to become a seller</span>
-                            <li>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro earum placeat dignissimos atque corrupti adipisci rem quo ea amet, similique, aliquam iste unde delectus? </li>
-                            <li>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro earum placeat dignissimos atque corrupti adipisci rem quo ea amet, similique, aliquam iste unde delectus? </li>
-                            <li>3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro earum placeat dignissimos atque corrupti adipisci rem quo ea amet, similique, aliquam iste unde delectus? </li>
-                            <li>4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro earum placeat dignissimos atque corrupti adipisci rem quo ea amet, similique, aliquam iste unde delectus? </li>
-                            <li>5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro earum placeat dignissimos atque corrupti adipisci rem quo ea amet, similique, aliquam iste unde delectus? </li>
-                        </ul>
+                        }}>
+                            <div className="col__1"><h1>Sell your products with C-Bae</h1>
+                            <p>One platform that lets you sell wherever your customers are:
+                            online, in‑person, and everywhere in between</p> 
+                            <h1>Run your business from a single place </h1>
+                            <p>Promote and sell on sales channels while Shopify 
+                                automatically tracks orders and inventory.</p>
+                                <h1>Boost sales</h1>
+                                <p>Customize where your products appear, 
+                                    so you can feel confident the right shoppers 
+                                    discover your business.</p> </div></span>
+                            
+                            \<img src="view/products.jpg" alt="Products" />
+                            
+                      
+                            <div className="col__3">
+                        \<img src="view/products2.jpg" alt="Products" />
+                            <h1>Your storefront </h1>
+                            <p>It’s never been easier to set up your own online store and bring your brand to life</p>
+                            </div>
+                            <div className="col__3">
+                        \<img src="view/products3.jpg" alt="Products" />
+                            <h1>Online marketplaces</h1>
+                            <p>Connect to online marketplaces across the web so you can sell where people shop.</p>
+                            </div>
                     </div>
                     <div>
                         <Link to="" className="become_seller_link">Become a Seller</Link>
