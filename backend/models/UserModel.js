@@ -62,7 +62,17 @@ userSchema.methods.getJwtToken = function () {
 
 // compare password
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  console.log('enteredpassword: ' + enteredPassword)
+  console.log('this.password: ' + this.password)
+
+  if (enteredPassword === this.password) {
+    return true
+  } else {
+    return false
+  }
+
+  // commented out 20230328 and added simple if statement above
+  // return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // Forgot password

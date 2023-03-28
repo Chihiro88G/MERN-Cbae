@@ -24,14 +24,14 @@ const UserData = ({ user }) => {
 
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  
+
   const scroolEffect = useRef(null);
 
-  window.addEventListener("scroll", () =>{
-    if(window.pageYOffset > 100){
-        document.querySelector(".speedDial").classList.add("active");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 100) {
+      document.querySelector(".speedDial").classList.add("active");
     }
-    else{
+    else {
       document.querySelector(".speedDial").classList.remove("active");
     }
   })
@@ -44,9 +44,9 @@ const UserData = ({ user }) => {
     {
       icon: (
         <ShoppingCartIcon
-        style={{
-         color: cartItems.length === 0 ? "" : "tomato",
-        }}
+          style={{
+            color: cartItems.length === 0 ? "" : "tomato",
+          }}
         />
       ),
       name: `Cart (${cartItems.length})`,
@@ -54,13 +54,13 @@ const UserData = ({ user }) => {
     },
     {
       icon:
-          <HeartIcon 
+        <HeartIcon
           style={{
             color: favouriteItems.length === 0 ? "" : "tomato",
-           }}
-          />,
+          }}
+        />,
       name:
-      `Favourite (${favouriteItems.length})`,
+        `Favourite (${favouriteItems.length})`,
       func: favourite,
     },
     { icon: <PersonIcon />, name: "Profile", func: account },
@@ -68,20 +68,28 @@ const UserData = ({ user }) => {
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
-  if (user.role === "admin") {
-    options.unshift({
-      icon: <DashboardIcon />,
-      name: "Dashboard",
-      func: dashboard,
-    });
-  }
-  if (user.role === "Creator") {
-    options.unshift({
-      icon: <DashboardIcon />,
-      name: "Dashboard",
-      func: dashboard,
-    });
-  }
+  // commented out until assigning a role to user
+  // if (user.role === "admin") {
+  //   options.unshift({
+  //     icon: <DashboardIcon />,
+  //     name: "Dashboard",
+  //     func: dashboard,
+  //   });
+  // }
+  // if (user.role === "Creator") {
+  //   options.unshift({
+  //     icon: <DashboardIcon />,
+  //     name: "Dashboard",
+  //     func: dashboard,
+  //   });
+  // }
+
+  // temp
+  options.unshift({
+    icon: <DashboardIcon />,
+    name: "Dashboard",
+    func: dashboard,
+  });
 
   function dashboard() {
     history.push("/dashboard");
@@ -126,10 +134,10 @@ const UserData = ({ user }) => {
         icon={
           <img
             className="speedDialIcon"
-            src={user.avatar.url ? user.avatar.url : ("/profile.png")}
+            src="/profile.png"
             alt="Profile"
             style={{
-              position:"fixed"
+              position: "fixed"
             }}
           />
         }
@@ -137,14 +145,14 @@ const UserData = ({ user }) => {
         {options.map((item) => (
           <SpeedDialAction
             key={item.name}
-            icon={item.icon}
+            // icon={item.icon}
             tooltipTitle={item.name}
             onClick={item.func}
             tooltipOpen={false}
           />
         ))}
       </SpeedDial>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -154,7 +162,7 @@ const UserData = ({ user }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </>
   );
 };
