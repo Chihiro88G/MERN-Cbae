@@ -9,7 +9,8 @@ const cloudinary = require("cloudinary");
 // Register user
 exports.createUser = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, email, password, avatar } = req.body;
+    // const { name, email, password, avatar } = req.body;
+    const { name, email, password } = req.body;
 
     let user = await User.findOne({ email });
     if (user) {
@@ -18,18 +19,26 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         .json({ success: false, message: "User already exists" });
     }
 
-    const myCloud = await cloudinary.v2.uploader.upload(avatar, {
-      folder: "avatars",
-    });
+    // const myCloud = await cloudinary.v2.uploader.upload(avatar, {
+    //   folder: "avatars",
+    // });
+
+    console.log('create user: ' + user)
 
     user = await User.create({
       name,
       email,
       password,
-      avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
+      // avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
     });
 
-    sendToken(user, 201, res);
+    // commented out here 20230328 temporarily because it causes 401 authentication error
+    // sendToken(user, 201, res);
+
+    res.status(200).json({
+      success: true,
+      message: "Registration success",
+    });
 
   } catch (error) {
     res.status(500).json({
