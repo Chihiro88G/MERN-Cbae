@@ -9,7 +9,8 @@ const cloudinary = require("cloudinary");
 // Register user
 exports.createUser = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, email, password, avatar } = req.body;
+    // const { name, email, password, avatar } = req.body;
+    const { name, email, password } = req.body;
 
     let user = await User.findOne({ email });
     if (user) {
@@ -18,18 +19,26 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         .json({ success: false, message: "User already exists" });
     }
 
-    const myCloud = await cloudinary.v2.uploader.upload(avatar, {
-      folder: "avatars",
-    });
+    // const myCloud = await cloudinary.v2.uploader.upload(avatar, {
+    //   folder: "avatars",
+    // });
+
+    console.log('create user: ' + user)
 
     user = await User.create({
       name,
       email,
       password,
-      avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
+      // avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
     });
-    
-    sendToken(user, 201, res);
+
+    // commented out here 20230328 temporarily because it causes 401 authentication error
+    // sendToken(user, 201, res);
+
+    res.status(200).json({
+      success: true,
+      message: "Registration success",
+    });
 
   } catch (error) {
     res.status(500).json({
@@ -43,26 +52,40 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
+  console.log("email: " + email)
+  console.log("password: " + password)
+
   if (!email || !password) {
+    console.log('err on !email || !password')
     return next(new ErrorHandler("Please enter the email & password", 400));
   }
 
   const user = await User.findOne({ email }).select("+password");
+  console.log("user: " + user)
 
   if (!user) {
+    console.log('err on !user')
     return next(
       new ErrorHandler("User is not find with this email & password", 401)
     );
   }
+
   const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
+    console.log('err on isPasswordMatched')
     return next(
       new ErrorHandler("User is not find with this email & password", 401)
     );
   }
 
-  sendToken(user, 201, res);
+  // commented out here 20230328 temporarily because it causes 401 authentication error
+  // sendToken(user, 201, res);
+
+  res.status(200).json({
+    success: true,
+    message: "Log in success",
+  });
 });
 
 //  Log out user
@@ -171,38 +194,38 @@ exports.userDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Update User Password
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-   
-    const user = await User.findById(req.user.id).select("+password");
 
-    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+  const user = await User.findById(req.user.id).select("+password");
 
-    if (!isPasswordMatched) {
-      return next(
-        new ErrorHandler("Old Password is incorrect", 400)
-      );
-    };
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
-    if(req.body.newPassword  !== req.body.confirmPassword){
-        return next(
-            new ErrorHandler("Password not matched with each other", 400)
-          );
-    }
+  if (!isPasswordMatched) {
+    return next(
+      new ErrorHandler("Old Password is incorrect", 400)
+    );
+  };
 
-    user.password = req.body.newPassword;
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(
+      new ErrorHandler("Password not matched with each other", 400)
+    );
+  }
 
-    await user.save();
+  user.password = req.body.newPassword;
 
-    sendToken(user,200,res);
+  await user.save();
+
+  sendToken(user, 200, res);
 });
 
 // Update User Profile
-exports.updateProfile = catchAsyncErrors(async(req,res,next) =>{
-    const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
-    };
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
 
-   if (req.body.avatar !== "") {
+  if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
@@ -232,65 +255,65 @@ exports.updateProfile = catchAsyncErrors(async(req,res,next) =>{
 });
 
 // Get All users ---Admin
-exports.getAllUsers = catchAsyncErrors(async (req,res,next) =>{
-    const users = await User.find();
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
 
-    res.status(200).json({
-        success: true,
-        users,
-    });
+  res.status(200).json({
+    success: true,
+    users,
+  });
 });
 
 // Get Single User Details ---Admin
-exports.getSingleUser = catchAsyncErrors(async (req,res,next) =>{
-    const user = await User.findById(req.params.id);
-   
-    if(!user){
-        return next(new ErrorHandler("User is not found with this id",400));
-    }
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
-    res.status(200).json({
-        success: true,
-        user,
-    });
+  if (!user) {
+    return next(new ErrorHandler("User is not found with this id", 400));
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
 });
 
 // Change user Role --Admin
-exports.updateUserRole = catchAsyncErrors(async(req,res,next) =>{
-    const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
-        role: req.body.role,
-    };
-    const user = await User.findByIdAndUpdate(req.params.id,newUserData, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-    });
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
 
-    res.status(200).json({
-        success: true,
-        user
-    })
+  res.status(200).json({
+    success: true,
+    user
+  })
 });
 
 // Delete User ---Admin
-exports.deleteUser = catchAsyncErrors(async(req,res,next) =>{
-  
-   const user = await User.findById(req.params.id);
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
 
-   const imageId = user.avatar.public_id;
+  const user = await User.findById(req.params.id);
 
-   await cloudinary.v2.uploader.destroy(imageId);
+  const imageId = user.avatar.public_id;
 
-    if(!user){
-        return next(new ErrorHandler("User is not found with this id",400));
-    }
+  await cloudinary.v2.uploader.destroy(imageId);
 
-    await user.remove();
+  if (!user) {
+    return next(new ErrorHandler("User is not found with this id", 400));
+  }
 
-    res.status(200).json({
-        success: true,
-        message:"User deleted successfully"
-    })
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "User deleted successfully"
+  })
 });
