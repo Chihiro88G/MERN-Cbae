@@ -89,7 +89,7 @@ const Footer = () => {
           <h5>Account</h5>
           <Link to="/login"><h3>Log In</h3></Link>
           <Link to="/login"><h3>Registration</h3></Link>
-          <Link to="/account_setting"><h3>Account Setting</h3></Link>
+          <Link to="/me"><h3>Account Setting</h3></Link>
           <Link to="/password/forgot"><h3>Forgot Password</h3></Link>
         </div>
         {/* Footer 3rd part */}

@@ -40,7 +40,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   deleteReview: deleteReviewReducer,
   productReviews: productReviewsReducer,
-  forgotPassword:forgotPasswordReducer,
+  forgotPassword: forgotPasswordReducer,
 });
 
 let initialState = {
@@ -58,6 +58,9 @@ let initialState = {
       ? JSON.parse(localStorage.getItem("favouriteItems"))
       : [],
   },
+  user: {
+    user: []
+  }
 };
 
 const middleWare = [thunk];

@@ -85,6 +85,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "Log in success",
+    user
   });
 });
 
@@ -184,7 +185,11 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 //  Get user Details
 exports.userDetails = catchAsyncErrors(async (req, res, next) => {
+
+  console.log('id: ' + req.user.id)
   const user = await User.findById(req.user.id);
+
+  console.log('user: ' + user)
 
   res.status(200).json({
     success: true,
