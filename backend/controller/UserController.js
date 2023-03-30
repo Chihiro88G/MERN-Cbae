@@ -23,8 +23,6 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
     //   folder: "avatars",
     // });
 
-    console.log('create user: ' + user)
-
     user = await User.create({
       name,
       email,

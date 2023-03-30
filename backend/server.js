@@ -14,8 +14,9 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
         path: "backend/config/.env"
     })
 }
-// connect database
-connectDatabase();
+
+// connect database used for local connection
+// connectDatabase();
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
