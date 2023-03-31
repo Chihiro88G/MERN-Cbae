@@ -18,6 +18,8 @@ const Profile = ({ history }) => {
         }
     }, [history, isAuthenticated]);
 
+    console.log('id: ' + user.id)
+
     return (
         <>
             {loading ? (<Loading />) : (
