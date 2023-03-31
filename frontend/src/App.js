@@ -102,6 +102,8 @@ function App() {
         <Route exact path="/password/forgot" component={ForgotPassword} />
         <Route exact path="/password/reset/:token" component={ResetPassword} />
         <Route exact path="/account_setting" component={AccountSetting} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/sell_product" component={CreateProduct} />
         <ProtectedRoute exact path="/shipping" component={Shipping} />
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
         <ProtectedRoute exact path="/me" component={Profile} />
@@ -111,7 +113,7 @@ function App() {
         <ProtectedRoute exact path="/orders" component={MyOrder} />
         <ProtectedRoute exact path="/order/:id" component={MyOrderDetails} />
         <ProtectedRoute isAdmin={true} exact path="/dashboard" component={Dashboard} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProduct} />
+        {/* <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProduct} /> */}
         <ProtectedRoute isAdmin={true} exact path="/admin/products" component={AllProducts} />
         <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
         <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={AllOrder} />

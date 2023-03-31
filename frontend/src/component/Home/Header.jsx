@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../Assets/logo/CbaeLogo.jpeg"
 import { green } from "@material-ui/core/colors";
+import { CreateProduct } from "../Admin/CreateProduct"
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -12,6 +13,13 @@ const Header = () => {
   const { user } = useSelector((state) => state.user)
 
   console.log('user: ' + user)
+
+  var isSeller = false;
+  if (user != null) {
+    if (user.role === 'seller') {
+      isSeller = true
+    }
+  }
 
   const switcherTab = useRef(null);
 
@@ -136,9 +144,25 @@ const Header = () => {
             <Link to="/Products">
               <li>Products</li>
             </Link>
-            <Link to="/become_seller">
-              <li>Become A Seller</li>
-            </Link>
+
+            {[isSeller ?
+              (<Link to="/dashboard">
+                <li>Dashboard</li>
+              </Link>)
+              :
+              (<Link to="/become_seller">
+                <li>Become A Seller</li>
+              </Link>)]}
+
+            {/* {user.role = 'seller' ?
+              (<Link to="/become_seller">
+                <li>Become A Seller</li>
+              </Link>)
+              :
+              (<Link to="/become_seller">
+                <li>Become A Seller</li>
+              </Link>)} */}
+
             <Link to="/faq">
               <li>Users Rules</li>
             </Link>
@@ -228,9 +252,6 @@ const Header = () => {
             </div>
           </div>
           <div className="user__account flex pointer">
-            {/* if (user != null) {
-              <div>Welcome, {user.name}</div>
-            } */}
             {user ?
               (<Link to="/logout">
                 <svg
