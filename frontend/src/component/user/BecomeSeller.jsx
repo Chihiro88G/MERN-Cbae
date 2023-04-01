@@ -17,18 +17,6 @@ const BecomeSeller = () => {
         loading,
     } = useSelector((state) => state.products);
 
-    // const updateProfileSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     const myForm = new FormData();
-
-    //     myForm.set("name", user.name);
-    //     myForm.set("email", user.email);
-    //     myForm.set("role", "seller");
-    //     // myForm.set("avatar", avatar);
-    //     dispatch(updateProfile(myForm));
-    // };
-
     return (
         <>
             {loading ? (

@@ -153,16 +153,6 @@ const Header = () => {
               (<Link to="/become_seller">
                 <li>Become A Seller</li>
               </Link>)]}
-
-            {/* {user.role = 'seller' ?
-              (<Link to="/become_seller">
-                <li>Become A Seller</li>
-              </Link>)
-              :
-              (<Link to="/become_seller">
-                <li>Become A Seller</li>
-              </Link>)} */}
-
             <Link to="/faq">
               <li>Users Rules</li>
             </Link>
