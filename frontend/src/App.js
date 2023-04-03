@@ -104,6 +104,7 @@ function App() {
         <Route exact path="/account_setting" component={AccountSetting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/sell_product" component={CreateProduct} />
+        <Route exact path="/process/payment" component={Payment} />
         <ProtectedRoute exact path="/shipping" component={Shipping} />
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
         <ProtectedRoute exact path="/me" component={Profile} />
@@ -122,9 +123,9 @@ function App() {
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />
         <ProtectedRoute isAdmin={true} exact path="/admin/reviews" component={AllReviews} />
 
-        <Route component={
+        {/* <Route component={
           window.location.pathname === "/process/payment" ? null : Notfound
-        } />
+        } /> */}
       </Switch>
     </Router>
 

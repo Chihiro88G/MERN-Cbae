@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CheckoutSteps from "./CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../more/Metadata";
@@ -8,7 +8,7 @@ import {
   CardCvcElement,
   CardExpiryElement,
   useStripe,
-  useElements,
+  // useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./payment.css";
@@ -24,13 +24,13 @@ const Payment = ({ history }) => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
   const dispatch = useDispatch();
-  const stripe = useStripe();
-  const elements = useElements();
+  // const stripe = useStripe();
+  // const elements = useElements();
   const payBtn = useRef(null);
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
-  const { error,loading } = useSelector((state) => state.order);
+  const { error, loading } = useSelector((state) => state.order);
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
@@ -50,55 +50,55 @@ const Payment = ({ history }) => {
     payBtn.current.disabled = true;
 
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "/api/v2/payment/process",
-        paymentData,
-        config
-      );
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // };
+      // const { data } = await axios.post(
+      //   "/api/v2/payment/process",
+      //   paymentData,
+      //   config
+      // );
 
-      const client_secret = data.client_secret;
+      // const client_secret = data.client_secret;
 
-      if (!stripe || !elements) return;
+      // if (!stripe || !elements) return;
 
-      const result = await stripe.confirmCardPayment(client_secret, {
-        payment_method: {
-          card: elements.getElement(CardNumberElement),
-          billing_details: {
-            name: user.name,
-            email: user.email,
-            address: {
-              line1: shippingInfo.address,
-              city: shippingInfo.city,
-              state: shippingInfo.state,
-              country: shippingInfo.country,
-            },
-          },
-        },
-      });
+      // const result = await stripe.confirmCardPayment(client_secret, {
+      //   payment_method: {
+      //     card: elements.getElement(CardNumberElement),
+      //     billing_details: {
+      //       name: user.name,
+      //       email: user.email,
+      //       address: {
+      //         line1: shippingInfo.address,
+      //         city: shippingInfo.city,
+      //         state: shippingInfo.state,
+      //         country: shippingInfo.country,
+      //       },
+      //     },
+      //   },
+      // });
 
-      if (result.error) {
-        payBtn.current.disabled = false;
+      // if (result.error) {
+      //   payBtn.current.disabled = false;
 
-        toast.error(result.error.message);
-      } else {
-        if (result.paymentIntent.status === "succeeded") {
-          order.paymentInfo = {
-            id: result.paymentIntent.id,
-            status: result.paymentIntent.status,
-          };
+      //   toast.error(result.error.message);
+      // } else {
+      //   if (result.paymentIntent.status === "succeeded") {
+      //     order.paymentInfo = {
+      //       id: result.paymentIntent.id,
+      //       status: result.paymentIntent.status,
+      //     };
 
-          dispatch(createOrder(order));
+      //     dispatch(createOrder(order));
 
-          history.push("/success");
-        } else {
-          toast.error("There's some issue while processing payment ");
-        }
-      }
+      history.push("/success");
+      //   } else {
+      //     toast.error("There's some issue while processing payment ");
+      //   }
+      // }
     } catch (error) {
       payBtn.current.disabled = false;
       toast.error(error.response.data.message);
@@ -113,51 +113,54 @@ const Payment = ({ history }) => {
   }, [dispatch, error, toast]);
 
   return (
-   <>
-   {loading ? (
-     <Loading />
-   ) : (
     <>
-    <MetaData title="Payment" />
-    <CheckoutSteps activeStep={2} />
-    <div className="paymentContainer">
-      <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-        <Typography>Card Info</Typography>
-        <div>
-          <CreditCardIcon />
-          <CardNumberElement className="paymentInput" />
-        </div>
-        <div>
-          <EventIcon />
-          <CardExpiryElement className="paymentInput" />
-        </div>
-        <div>
-          <VpnKeyIcon />
-          <CardCvcElement className="paymentInput" />
-        </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <MetaData title="Payment" />
+          <CheckoutSteps activeStep={2} />
+          <div className="paymentContainer">
+            <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
+              <Typography>Card Info</Typography>
+              <div>
+                <CreditCardIcon />
+                {/* <CardNumberElement className="paymentInput" /> */}
+                <input type="number" className="paymentInput" placeholder="Card Number" required></input>
+              </div>
+              <div>
+                <EventIcon />
+                {/* <CardExpiryElement className="paymentInput" /> */}
+                <input type="number" className="paymentInput" placeholder="Expiry Date" required></input>
+              </div>
+              <div>
+                <VpnKeyIcon />
+                {/* <CardCvcElement className="paymentInput" /> */}
+                <input type="number" className="paymentInput" placeholder="3 digits" required></input>
+              </div>
 
-        <input
-          type="submit"
-          value={`Pay - $ ${orderInfo && orderInfo.totalPrice}`}
-          ref={payBtn}
-          className="paymentFormBtn"
-        />
-      </form>
-    </div>
-    <ToastContainer 
-     position="bottom-center"
-     autoClose={5000}
-     hideProgressBar={false}
-     newestOnTop={false}
-     closeOnClick
-     rtl={false}
-     pauseOnFocusLoss
-     draggable
-     pauseOnHover
-     />
-  </>
-   )}
-   </>
+              <input
+                type="submit"
+                value={`Pay - $ ${orderInfo && orderInfo.totalPrice}`}
+                ref={payBtn}
+                className="paymentFormBtn"
+              />
+            </form>
+          </div>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </>
+      )}
+    </>
   );
 };
 
