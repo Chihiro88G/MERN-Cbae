@@ -105,6 +105,8 @@ function App() {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/sell_product" component={CreateProduct} />
         <Route exact path="/process/payment" component={Payment} />
+        <Route exact path="/allproducts" component={AllProducts} />
+        <Route exact path="/edit/product/:id" component={EditProduct} />
         <ProtectedRoute exact path="/shipping" component={Shipping} />
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
         <ProtectedRoute exact path="/me" component={Profile} />
@@ -115,9 +117,9 @@ function App() {
         <ProtectedRoute exact path="/order/:id" component={MyOrderDetails} />
         <ProtectedRoute isAdmin={true} exact path="/dashboard" component={Dashboard} />
         {/* <ProtectedRoute isAdmin={true} exact path="/admin/product" component={CreateProduct} /> */}
-        <ProtectedRoute isAdmin={true} exact path="/admin/products" component={AllProducts} />
-        <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
-        <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={AllOrder} />
+        {/* <ProtectedRoute isAdmin={true} exact path="/admin/products" component={AllProducts} /> */}
+        {/* <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={AllOrder} /> */}
         <ProtectedRoute isAdmin={true} exact path="/admin/order/:id" component={UpdateOrder} />
         <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />
         <ProtectedRoute isAdmin={true} exact path="/admin/user/:id" component={UpdateUser} />

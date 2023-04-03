@@ -9,7 +9,7 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-    // eslint-disable-next-line
+// eslint-disable-next-line
 import DiscountIcon from "@material-ui/icons/LocalOffer";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constans/ProductConstans";
@@ -29,7 +29,7 @@ const UpdateProduct = ({ history, match }) => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-      // eslint-disable-next-line
+  // eslint-disable-next-line
   const [offerPrice, setOfferPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -74,8 +74,9 @@ const UpdateProduct = ({ history, match }) => {
 
     if (isUpdated) {
       toast.success("Product Updated Successfully");
-      history.push("/admin/products");
+      history.push("/allproducts");
       dispatch({ type: UPDATE_PRODUCT_RESET });
+      window.location.reload(false);
     }
   }, [
     dispatch,
@@ -88,7 +89,7 @@ const UpdateProduct = ({ history, match }) => {
     updateError,
   ]);
 
-  const updateProductSubmitHandler  = (e) => {
+  const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -241,7 +242,7 @@ const UpdateProduct = ({ history, match }) => {
           </form>
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -251,7 +252,7 @@ const UpdateProduct = ({ history, match }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };
