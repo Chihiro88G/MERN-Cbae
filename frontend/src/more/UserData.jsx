@@ -69,27 +69,27 @@ const UserData = ({ user }) => {
   ];
 
   // commented out until assigning a role to user
-  // if (user.role === "admin") {
-  //   options.unshift({
-  //     icon: <DashboardIcon />,
-  //     name: "Dashboard",
-  //     func: dashboard,
-  //   });
-  // }
-  // if (user.role === "Creator") {
-  //   options.unshift({
-  //     icon: <DashboardIcon />,
-  //     name: "Dashboard",
-  //     func: dashboard,
-  //   });
-  // }
+  if (user.role === "seller") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: dashboard,
+    });
+  }
+  if (user.role === "buyer") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: dashboard,
+    });
+  }
 
   // temp
-  options.unshift({
-    icon: <DashboardIcon />,
-    name: "Dashboard",
-    func: dashboard,
-  });
+  // options.unshift({
+  //   icon: <DashboardIcon />,
+  //   name: "Dashboard",
+  //   func: dashboard,
+  // });
 
   function dashboard() {
     history.push("/dashboard");
