@@ -1,7 +1,3 @@
-2023/03/20
-*need to create cbae first on local mongoDB (see Database.js)
-*commented out some codes temporally to make the project work (App.js, ProductAction.js). 
-
 
 This is a MERN Stack Ecommerce website made by Group 2 in COMP231. 
 
