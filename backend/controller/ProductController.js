@@ -27,14 +27,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
   }
 
-  console.log('imagesLinks: ' + imagesLinks)
-
   req.body.images = imagesLinks;
   // req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
-
-  console.log('after create')
 
   res.status(200).json({
     success: true,
@@ -64,8 +60,6 @@ exports.getAllProducts = catchAsyncErrors(async (req, res) => {
     .pagination(resultPerPage);
   const products = await feature.query;
 
-  console.log('products: ' + products)
-
   res.status(200).json({
     success: true,
     products,
@@ -84,38 +78,37 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
   let images = [];
 
-  // if (typeof req.body.images === "string") {
-  //   images.push(req.body.images);
-  // } else {
-  //   images = req.body.images;
-  // }
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
 
-  // if (images !== undefined) {
-  //   // Delete image from cloudinary
-  //   for (let i = 0; i < product.images.length; i++) {
-  //     await cloudinary.v2.uploader.destroy(product.images[i].public_id);
-  //   }
+  if (images !== undefined) {
+    // Delete image from cloudinary
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
 
-  //   const imagesLinks = [];
+    const imagesLinks = [];
 
-  //   for (let i = 0; i < images.length; i++) {
-  //     const result = await cloudinary.v2.uploader.upload(images[i], {
-  //       folder: "products",
-  //     });
-  //     imagesLinks.push({
-  //       public_id: result.public_id,
-  //       url: result.secure_url,
-  //     });
-  //   }
-  //   req.body.images = imagesLinks;
-  // }
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+    req.body.images = imagesLinks;
+  }
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
     useUnified: false,
   });
-  console.log('after update')
 
   res.status(200).json({
     success: true,
@@ -127,7 +120,6 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   console.log('start deleteProduct')
   const product = await Product.findById(req.params.id);
-  console.log('product: ' + product)
 
 
   if (!product) {
@@ -136,11 +128,11 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   // Deleting images from cloudinary
-  // for (let i = 0; 1 < product.images.length; i++) {
-  //   const result = await cloudinary.v2.uploader.destroy(
-  //     product.images[i].public_id
-  //   );
-  // }
+  for (let i = 0; 1 < product.images.length; i++) {
+    const result = await cloudinary.v2.uploader.destroy(
+      product.images[i].public_id
+    );
+  }
 
   await product.remove();
 

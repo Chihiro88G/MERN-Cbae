@@ -9,7 +9,7 @@ import { CreateProduct } from "../Admin/CreateProduct"
 import { logout } from "../../actions/userAction"
 import { toast } from "react-toastify"
 
-const Header = () => {
+const Header = ({ history }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const { favouriteItems } = useSelector((state) => state.favourite);
   const { user } = useSelector((state) => state.user)
