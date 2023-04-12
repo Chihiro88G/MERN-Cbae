@@ -4,8 +4,6 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../Assets/logo/CbaeLogo.jpeg"
-import { green } from "@material-ui/core/colors";
-import { CreateProduct } from "../Admin/CreateProduct"
 import { logout } from "../../actions/userAction"
 import { toast } from "react-toastify"
 

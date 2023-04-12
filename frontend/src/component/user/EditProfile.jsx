@@ -9,7 +9,6 @@ import Loading from "../../more/Loader";
 import MetaData from "../../more/Metadata";
 import { UPDATE_PROFILE_RESET } from "../../constans/userContans";
 import { ToastContainer, toast } from 'react-toastify';
-import { Checkbox } from "@material-ui/core";
 
 const EditProfile = ({ history }) => {
   const dispatch = useDispatch();
@@ -27,11 +26,6 @@ const EditProfile = ({ history }) => {
   const [avatarPreview, setAvatarPreview] = useState("/profile.png");
   const [role, setRole] = useState("");
 
-  // const roleChecked = (event) => {
-  //   setRole(event.target.checked.name)
-  //   // console.log('role: ' + role)
-  // }
-
   const updateProfileSubmit = (e) => {
     e.preventDefault();
 
@@ -41,7 +35,7 @@ const EditProfile = ({ history }) => {
     myForm.set("id", id)
     myForm.set("name", name);
     myForm.set("email", email);
-    // myForm.set("avatar", avatar);
+    myForm.set("avatar", avatar);
     myForm.set("role", role);
     dispatch(updateProfile(myForm));
   };
@@ -63,7 +57,7 @@ const EditProfile = ({ history }) => {
       setName(user.name);
       setEmail(user.email);
       setRole(user.role);
-      // setAvatarPreview(user.avatar.url)
+      setAvatarPreview(user.avatar.url)
     }
 
     if (error) {
@@ -128,7 +122,7 @@ const EditProfile = ({ history }) => {
                 </div>
 
                 <div id="updateProfileImage">
-                  {/* <img src={avatarPreview} alt="Avatar Preview" /> */}
+                  <img src={avatarPreview} alt="Avatar Preview" />
                   <input
                     type="file"
                     name="avatar"

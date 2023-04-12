@@ -18,8 +18,6 @@ const Profile = ({ history }) => {
         }
     }, [history, isAuthenticated]);
 
-    console.log('id: ' + user.id)
-
     return (
         <>
             {loading ? (<Loading />) : (
@@ -38,7 +36,12 @@ const Profile = ({ history }) => {
                                     fontFamily: "Poppins,sans-serif", opacity: "1",
                                     fontSize: "2vmax"
                                 }}>My Profile</h1>
-                                {/* <img src={user.avatar.url} alt={user.name} className="profile__img" /> */}
+                                {
+                                    user.avatar ?
+                                        (<img src={user.avatar.url} alt={user.name} className="profile__img" />)
+                                        :
+                                        (<div>(No Image)</div>)
+                                }
                                 <Link to="/me/update/info" className="edit__profile">Edit Profile</Link>
                             </div>
                         </div>
