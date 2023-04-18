@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@material-ui/lab";
+import noimage from "../../Assets/NoImage.png"
 const ProductCard = ({ product }) => {
   const options = {
     value: product.ratings,
@@ -11,11 +12,22 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <Link className="ProductCard" to={`/product/${product._id}`}>
-        {/* <img
+        {product.images[0] ?
+          (
+            <img
               src={product.images[0].url}
               alt={product.name}
               className="ProductImg"
-            /> */}
+            />
+          )
+          :
+          (
+            <img
+              src={noimage}
+              alt={product.name}
+              className="ProductImg"
+            />
+          )}
         <p className="productName">{product.name}</p>
         <div>
           <Rating {...options} />

@@ -50,9 +50,8 @@ export const getProduct = (keyword = "", currentPage = 1, category) => async (di
     })
   } catch (error) {
     dispatch({
-      // commented out temporally 20230320
-      // type:ALL_PRODUCT_FAIL,
-      // payload: error.response.data.message,
+      type: ALL_PRODUCT_FAIL,
+      payload: error.response.data.message,
     })
   }
 };
