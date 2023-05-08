@@ -22,3 +22,10 @@ https://reactjs.org/
 https://nodemailer.com/about/
 ** EMAIL JS
 https://www.emailjs.com/
+
+
+Some features look like...
+
+*Landing page
+![image](https://user-images.githubusercontent.com/92942970/236841409-e189473e-2a69-4bf3-8e99-6b62c8b88bfc.png)
+
