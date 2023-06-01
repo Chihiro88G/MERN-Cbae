@@ -1,5 +1,5 @@
 
-This is a MERN Stack Ecommerce website made by Group 2 in COMP231. 
+This is a MERN Stack Ecommerce website. 
 
 
 M = MONGODB FOR DATABASE
